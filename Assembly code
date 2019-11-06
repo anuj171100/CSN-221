@@ -1,0 +1,43 @@
+mov R0,0   
+mov R1 ,1  
+mov R2,1   
+mov R3,1   
+    
+    
+.loop1 :
+        mov R0,0 
+        mov R2,1 
+        .loop2: 
+              mov R3,R2   
+              add R3,R3,1 
+              .loop3:
+                      mov R4,R2     
+                      mov R5,R3     
+                      mul R4,R2,R2  
+                      mul R5,R3,R3  
+                      mul R4,R4,R2  
+                      mul R5,R5,R3  
+                      add R6,R4,R5  
+                      cmp R6,R1     
+                      beq .increase 
+                      b .loopa
+                      .increase:
+                                 add R0,R0,1
+                                 b .loopa
+                      .loopa:
+                                 add R3,R3,1 
+                                 cmp R3,R1 
+                                 bgt .looping2      
+                                 b .loop3   
+                          add R2,R2,1 
+                          cmp R2,R1
+                          bgt .loopin
+                          b .loop2 
+        .loopin:
+                  cmp R0,1 
+                  bgt .done 
+                  add R1,R1,1 
+                  b .loop1 
+        
+.done:
+      exit
